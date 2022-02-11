@@ -1,8 +1,50 @@
-{%  extends 'lookup/base.html' %}
-{% block title %} Title {% endblock title %}
+{% extends 'lookup/base.html' %}
+{% block title %}  {% endblock title %}
 {% block content %}
 
-    <h1>Hello World!!</h1>
+
+
+
+    <br/>
+    <!--
+    {% if zipcode %}
+        {{ zipcode }}
+    {% endif %}
+     -->
+    {% if api %}
+        {% if api == "Error.." %}
+            There was an error, please try again..
+        {% else %}
+
+            <div class="jumbotron {{ category_color }}">
+
+                <h1 class="display-4">{{ api.0.Category.Name }}</h1>
+                <p class="lead">Current {{ api.0.ReportingArea }} Air Quality: {{ api.0.AQI }}</p>
+                <hr class="my-4">
+                <p>{{ category_description }}</p>
+                <!--
+                {% if api.0.Category.Name == "Good" %}
+                    <p>Air quality is satisfactory, and air pollution poses little or no risk.</p>
+                {% elif api.0.Category.Name == "Moderate" %}
+                    <p>Air quality is acceptable. However, there may be a risk for some people, particularly those who
+                        are unusually sensitive to air pollution.</p>
+                {% elif api.0.Category.Name == "Unhealthy for Sensitive Groups" %}
+                    <p>Members of sensitive groups may experience health effects. The general public is less likely to
+                        be affected.</p>
+                {% elif api.0.Category.Name == "Unhealthy" %}
+                    <p>Some members of the general public may experience health effects; members of sensitive groups may
+                        experience more serious health effects.</p>
+                {% elif api.0.Category.Name == "Very Unhealthy" %}
+                    <p>Health alert: The risk of health effects is increased for everyone.</p>
+                {% elif api.0.Category.Name == "Hazardous" %}
+                    <p>Health warning of emergency conditions: everyone is more likely to be affected.</p>
+                {% endif %}
+                -->
+            </div>
+        {% endif %}
+    {% endif %}
+
+
 
 {% endblock content %}
 
